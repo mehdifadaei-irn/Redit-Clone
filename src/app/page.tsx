@@ -1,3 +1,10 @@
+import Butt from "@/components/myn/Butt";
+
 export default function Home() {
-  return <div>Home</div>
+  return (
+    <div>
+      سلام
+      <p>hello</p>
+    </div>
+  );
 }
