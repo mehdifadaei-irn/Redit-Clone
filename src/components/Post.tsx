@@ -4,6 +4,7 @@ import { MessageSquare } from "lucide-react"
 import Link from "next/link"
 import { FC, useRef } from "react"
 import EditorOutput from "./EditorOutput"
+import PostVoteClient from "./post-vote/PostVoteClient"
 
 type PartialVote = Pick<Vote, "type">
 
@@ -28,8 +29,13 @@ const Post: FC<PostProps> = ({
   const pRef = useRef<HTMLDivElement>(null)
   return (
     <div className="rounded-md bg-white shadow font-sans">
-      <div className="px-6 py-4 justify-between">
+      <div className="px-6 py-4 justify-between flex">
         {/* PostVotes */}
+        <PostVoteClient
+          initialVotesAmt={_votesAmt}
+          postId={post.id}
+          initialVote={_currentVote?.type}
+        />
 
         <div className="w-full flex-1 ">
           <div className="max-h-40 mt-1 text-xs text-gray-500 flex">
@@ -44,14 +50,14 @@ const Post: FC<PostProps> = ({
                 <span className="px-1">•</span>
               </>
             ) : null}
-            <span className="flex">Posted by u/{post.author.name}</span> {formatTimeToNow(new Date(post.createdAt))}
+            <span className="flex">Posted by u/{post.author.name}</span>{" "}
+            {formatTimeToNow(new Date(post.createdAt))}
           </div>
           <a href={`/r/${subredditName}/post/${post.id}`}>
             <h1 className="text-large font-semibold py-2 leading-6 text-gray-900">{post.title}</h1>
           </a>
 
           <div ref={pRef} className="relative text-sm max-h-40 w-full overflow-clip">
-
             <EditorOutput content={post.content} />
             {pRef.current?.clientHeight === 160 ? (
               // blur bottom if content is too long
