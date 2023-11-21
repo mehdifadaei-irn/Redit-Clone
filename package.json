@@ -51,7 +51,7 @@
     "lucide-react": "^0.221.0",
     "nanoid": "^4.0.2",
     "next": "13.4.4",
-    "next-auth": "^4.22.1",
+    "next-auth": "^4.24.5",
     "postcss": "8.4.23",
     "prettier": "^3.0.0",
     "prisma": "^4.14.1",
